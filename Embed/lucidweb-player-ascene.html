@@ -1,0 +1,14 @@
+<template>
+	<a-scene vr-mode-ui="enabled: false">
+		<a-entity camera look-controls>
+			<a-entity id="cursor" visible="false" raycaster="interval: 500; objects: [gui-interactable]"
+						cursor="fuse: true;"
+						gui-cursor="design:ring;" >
+			</a-entity>
+		</a-entity>
+
+		<a-entity id="interface-3D" position="0 -5 -5" visible="false" rotation="-45 0 0"></a-entity>
+		<a-sky color="black"></a-sky>
+		<a-videosphere lucidweb-player></a-videosphere>
+	</a-scene>
+</template>

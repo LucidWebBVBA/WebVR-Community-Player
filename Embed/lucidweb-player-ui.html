@@ -1,0 +1,39 @@
+<template>
+	<div id="device" style="display:none;"></div>
+	<div id="logoContainer">
+		<a href="/"><img src="https://lucidweb.io/Images/LW.png" width="100%" alt="LucidWeb"/></a>
+	</div>
+	<div id="mobileUserAction" onclick="player.play()">
+		<img src="https://lucidweb.io/Images/Button/button.png" onmouseenter="hover(this)" onmouseout="unhover(this)" />
+	</div>
+	<div id="interface" data-state="visible">
+		<div id="slider">
+			<div id="sliderProgress"></div>
+		</div>
+		<div class="controls">
+			<div id="left-controls">
+				<img id="playpause" onclick="player.playPauseVideo()" data-state="play" src="https://lucidweb.io/Images/Player_Icons/play.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)"/>
+				<img id="volumeOnOff" onclick="player.setVolumeOnOff()" data-state="volumeOff" src="https://lucidweb.io/Images/Player_Icons/volume-off.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" />
+			</div>
+			<div id="right-controls">
+				<img id="enterVR" title="Enter VR mode with a headset or fullscreen mode on a desktop. Visit https://webvr.rocks or https://webvr.info for more information." data-state="enterVR" src="https://lucidweb.io/Images/Player_Icons/vr.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" />
+				<img id="shareableUrl" onclick="player.showModalShare()" data-state="shareableUrl" src="https://lucidweb.io/Images/Player_Icons/share.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" />
+			</div>
+		</div>
+	</div>
+	<div id="modalEnterVR"></div>
+	<div id="modalShare">
+		<div id="socialLine">
+			<img src="https://lucidweb.io/Images/Share_Icons/facebook.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" onclick="player.shareLinkFacebook()" />
+			<img src="https://lucidweb.io/Images/Share_Icons/twitter.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" onclick="player.shareLinkTwitter()" />
+			<img src="https://lucidweb.io/Images/Share_Icons/googleplus.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" onclick="player.shareLinkGoogleplus()" />
+			<img src="https://lucidweb.io/Images/Share_Icons/email.svg" onmouseover="player.onUIHover(this)" onmouseout="player.onUIHoverLeft(this)" onclick="player.shareLinkEmail()" />
+		</div>
+		<div id="copyLinkLine">
+			<div id="shareLinkDiv" >
+				<img id="copyLinkBtn" src="https://lucidweb.io/Images/Share_Icons/Copy_Link_Button1.svg">
+				<input id="shareLinkInput" type="input" />
+			</div>
+		</div>
+	</div>
+</template>

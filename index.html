@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>LucidWeb</title>
+
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="icon" type="image/ico" href="favicon.ico"/>
+
+	<link href="./style.css" rel="stylesheet">
+
+	<script type="text/javascript" src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+	<script type="text/javascript" src="./Components/lucidweb-device-handler-component.js"></script>
+	<script type="text/javascript" src="./Components/lucidweb-player-component.js"></script>
+	<script type="text/javascript" src="./Components/lucidweb-ui-component.js"></script>
+	<script type="text/javascript" src="./Embed/lucidweb-player-analytics.js"></script>
+
+	<!-- Origin Trial Token, feature = WebVR (For Chrome M59+), origin = https://lucidweb.io, expires = 2017-11-14 -->
+	<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-11-14" content="Am9n8uX7/B3/0Gcbq2brb4iZAHwZ9FfIqlHAbSl1/h35pJc8qpKiXeXy3oCtMk2qnBBMui0iIPI48xrhlijs1gAAAABgeyJvcmlnaW4iOiJodHRwczovL2x1Y2lkd2ViLmlvOjQ0MyIsImZlYXR1cmUiOiJXZWJWUjEuMSIsImV4cGlyeSI6MTUxMDYxNzYwMCwiaXNTdWJkb21haW4iOnRydWV9">
+</head>
+
+<body>
+  <script>
+		/**
+		 * This script allows to import HTML files into this one
+		 * in order to enable them to be used in multiple destinations
+		 */
+		function appendHTML(src){
+			return new Promise((resolve, reject) => {
+				return fetch(src).then(function(response){
+					return response.text();
+				}).then(function(htmldata){
+					var elt = document.createElement('div');
+					elt.innerHTML = htmldata;
+
+			    var template = elt.querySelector('template');
+			    var clone = document.importNode(template.content, true);
+			    document.body.appendChild(clone);
+					resolve();
+				}).catch(reason => {
+				  console.log("Error in loading lucidweb-player HTML", reason);
+					reject();
+				});
+			})
+		}
+
+
+		(function(){
+			appendHTML("./Embed/lucidweb-player-ui.html").then(() => {
+				appendHTML("./Embed/lucidweb-player-ascene.html").then(() => {
+					return true;
+				}).catch((err) => {
+					console.log("Error loading HTML files", err);
+				})
+			})
+		})();
+  </script>
+</body>
+
+</html>

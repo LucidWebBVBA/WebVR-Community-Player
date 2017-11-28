@@ -1,0 +1,245 @@
+#device {
+	color:rgba(0,0,0,0.5); position:absolute; top0px; left:0px; z-index:99; margin:9px;
+}
+
+#logoContainer {
+	position:absolute; top: 0; right:0; z-index:99; color:yellow; margin:9px; max-width: 40px;
+}
+
+@media screen and (max-width: 600px) {
+	#logoContainer{
+		max-width: 25px;
+	}
+}
+
+#shareableUrlContainer {
+	display:none; position:absolute; top0px;background-color:rgba(55,55,55,0.5); z-index:99; color:white; padding:5px; margin:30%;
+}
+
+#mobileUserAction {
+	/* hidden by default since there is now a play button */
+	position:absolute; top0px;background-color:rgba(55,55,55,0.5); z-index:99; color:white; padding:50px;
+	margin:30%;
+	display:none;
+}
+
+#modalEnterVR{
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  position: absolute;
+  display: none;
+}
+
+.show{
+	display: block!important;
+}
+
+.hide{
+	display: none!important;
+}
+
+canvas{
+	width: 100%!important;
+	height: 100%!important;
+}
+
+#lucidweb-player{
+	width: 500px;
+	height: 250px;
+	position: relative;
+	overflow: hidden;
+	margin: auto;
+}
+
+/**
+ * 2D PLAYER INTERFACE
+ */
+
+#interface{
+  display: block;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.42);
+}
+#interface[data-state=hidden] {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+#interface[data-state=visible] {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+	#interface{
+		height: 23%;
+	}
+}
+
+#slider{
+  width: 100%;
+  height: 6px;
+  background-color: rgba(200, 200, 200, 0.23);
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+#sliderProgress{
+  height: 100%;
+  background: -moz-radial-gradient(#00d0ff, #00ffad, #10418a) repeat scroll 0% 0% transparent;
+  background: radial-gradient(#00d0ff, #00ffad, #10418a);
+  display: flex;
+  width: 0%;
+}
+
+.controls {
+  overflow: hidden;
+  background: transparent;
+  width: 100%;
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+	.controls {
+		height: 28px;
+		padding: 5px 0;
+	}
+}
+@media screen and (min-width: 600px) {
+	.controls {
+		height: 50px;
+		padding: 10px 0;
+	}
+}
+@media only screen
+  and (min-device-width: 175px)
+  and (max-device-width: 667px)
+  and (orientation: landscape) {
+		.controls {
+			height: 28px;
+			padding: 5px 0;
+		}
+}
+.controls img {
+	height: 100%;
+  display: block;
+	cursor: pointer;
+}
+#right-controls img{
+  float: right;
+  margin-right: 2.5%;
+}
+#left-controls img{
+  float: left;
+	margin-left: 2.5%;
+}
+.controls div:focus {
+  outline: none;
+}
+
+#left-controls{
+  float: left;
+  height: 100%;
+  width: 50%;
+}
+#left-controls div{
+  float: left;
+}
+#right-controls{
+  float: right;
+  height: 100%;
+  width: 50%;
+}
+#right-controls div{
+  float: right;
+}
+
+#volumeInput {
+    transform: translate(-60px, -70px) rotate(-90deg);
+}
+
+/**
+ * SHARE MODAL INTERFACE
+ */
+
+#modalShare{
+	position: absolute;
+	z-index: 1000;
+	display: none;
+	left: 0;
+	right: 0;
+	top: 40%;
+	height: 21%;
+	max-width: 400px;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,0.3);
+	border-radius: 5px;
+}
+@media screen and (max-width: 940px) {
+	#modalShare{
+		width: 80%;
+		height: 22%;
+	}
+}
+#modalShare div{
+	float: left;
+	width: 100%;
+}
+
+@media (max-width: 900px) and  (orientation: landscape) {
+	#modalShare{
+		position: absolute;
+    left: 35%;
+    width: 30%;
+    top: 10%;
+    height: 20%;
+    z-index: 1000;
+    display: none;
+	}
+}
+
+#socialLine img{
+	width: 20%;
+  display: block;
+  float: left;
+  cursor: pointer;
+  margin: 0 2.5% 3% 2.5%;
+}
+
+#copyLinkLine img{
+	width: 100%;
+  display: block;
+  float: left;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1000;
+  opacity: 0.8;
+}
+
+#shareLinkInput{
+	display: none;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 5% 0 5% 15%;
+	background-color: rgba(0,0,0,0.4);
+	border-radius: 5px;
+	color: white;
+	font-size: 100%;
+}
+
+/**
+ * A-Frame INTERFACE
+ */
+
+/*doesnt work even though they are siblings ( + selector also fails)*/
+a-scene:hover ~ #interface {
+	background-color:rgba(155,155,155,1);
+}
