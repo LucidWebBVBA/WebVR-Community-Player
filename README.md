@@ -10,9 +10,14 @@ In order to embed the LucidWeb player, you need to had the library to your heade
 Then you need to add a div to your body, with the id *lucidweb-player* and the *src* attribute indicating the path to your 360° movie:
 
     <script type="text/javascript" src="https://lucidweb.io/communityplayer/Lib/lucidweb-player-embed.js"></script>
-    <div id="lucidweb-player" src="https://lucidweb.io/embbed/testing_videos/Silence_2k.mp4"></div>
-
-    <button id="lucidweb-player-start">Click here to start the experience</button><!--not mandatory-->
+    
+    
+	<div id="lucidweb-player-container">
+		<div id="lucidweb-player" src="https://lucidweb.io/embbed/testing_videos/Silence_2k.mp4"></div>
+        
+        <!--optional button-->
+		<button id="lucidweb-player-start" style="position:absolute;top:50%;">Click here to start the experience</button>
+    </div>
 
 The library will automatically load the files necessary to play your video.  
 
