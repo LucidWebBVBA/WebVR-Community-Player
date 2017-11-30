@@ -8,6 +8,7 @@
   /**
    * Component originally from a-frame-gui: https://github.com/rdub80/aframe-gui/
    * Under MIT License
+   * Handles the VR cursor's UI
    */
 
   AFRAME.registerComponent('gui-cursor', {
@@ -811,11 +812,20 @@
       }
   });
 
+	/**
+	 * AFrame component to display VR UI buttons that respond to user's gaze
+	 * @type {Object}
+	 */
   AFRAME.registerComponent('lucidweb-gui-button', {
     schema: {
       src: { type: 'string', default: 'text' },
       clickEvent: { type: 'string', default: '' },
     },
+		/**
+		 * Called once at the initialisation of the component
+		 * Create the button's display image
+		 * @return {[type]} [description]
+		 */
     init: function() {
       var image = document.createElement("a-image");
       image.setAttribute("src", this.data.src);
@@ -825,6 +835,10 @@
 
       this.el.addEventListener("click", this.onClick.bind(this));
     },
+		/**
+		 * Handles the user's interaction over the button
+		 * @return {[type]} [description]
+		 */
     onClick: function(){
       if(this.data.clickEvent){
         window.player[this.data.clickEvent]();
@@ -833,7 +847,16 @@
   });
 
 
+	/**
+	 * AFrame component to represent a Slider UI in VR
+	 * @type {[type]}
+	 */
   AFRAME.registerComponent('lucidweb-gui-slider', {
+		/**
+		 * Called once at the initialisation of the component
+		 * Create the Slider's geometry and display material
+		 * @return {[type]} [description]
+		 */
     init: function() {
       if(!window.player){
         throw new Error('Component needs a player to work correctly.');
@@ -851,7 +874,7 @@
       this.progressBarColored.id = "progressBarColored";
       this.progressBarColored.setAttribute("gui-interactable", {});
       this.progressBarColored.setAttribute('geometry', `primitive: cylinder; height: 0; radius: 0.11;`);
-      this.progressBarColored.setAttribute('material', `shader: flat; opacity: 1;  color: #00d0ff; side:front;`);
+      this.progressBarColored.setAttribute('material', `shader: flat; opacity: 1;  color: #00ffce; side:front;`);
       this.progressBarColored.setAttribute("rotation", "0 0 90");
       this.el.appendChild(this.progressBarColored);
 
@@ -866,6 +889,11 @@
 
       this.updateSlider();
     },
+		/**
+		 * Called from outside script to update the slider's progression
+		 * @param  {int} percent setting the slider's progression
+		 * @return {[type]}         [description]
+		 */
     updateSlider: function(percent){
       var length = parseFloat(document.querySelector("#progressBar").components["geometry"].attrValue.height);
       var posX = (percent * length) - (length / 2);
@@ -875,6 +903,11 @@
       this.progressBarColored.setAttribute("geometry", "primitive: cylinder; height: "+(percent * length)+"; radius: 0.11;");
       this.progressBarColored.setAttribute("position", posX + " 0 0");
     },
+		/**
+		 * Handle the user's interaction to update the slider's position
+		 * @param  {[type]} evt [description]
+		 * @return {[type]}     [description]
+		 */
     onClick: function(evt){
       var length = parseFloat(document.querySelector("#progressBar").components["geometry"].attrValue.height);
       var posX = evt.detail.intersection.point.x + (length / 2);

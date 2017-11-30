@@ -24,9 +24,10 @@
 }
 
 #modalEnterVR{
-  background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
+	background-size:     80vh;
+	background-color:    black;
   width: 100%;
   height: 100%;
   z-index: 10000;
@@ -47,12 +48,43 @@ canvas{
 	height: 100%!important;
 }
 
-#lucidweb-player{
-	width: 500px;
-	height: 250px;
+#lucidweb-player-container {
 	position: relative;
-	overflow: hidden;
-	margin: auto;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+  margin-bottom: 1rem;
+}
+#lucidweb-player {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#tapToUnmute{
+	position: absolute;
+	z-index: 1000;
+	width: 185px;
+	background-color: rgba(191, 188, 188, 0.8);
+	border-radius: 5px;
+	display: inline;
+	padding: 5px;
+	margin: 15px;
+}
+
+#tapToUnmute img{
+	width: 35px;
+  margin: 7px;
+  float: left;
+}
+
+#tapToUnmute span{
+	float: left;
+	margin-top: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
 }
 
 /**
@@ -79,7 +111,7 @@ canvas{
 
 @media (max-width: 900px) and (orientation: landscape) {
 	#interface{
-		height: 23%;
+
 	}
 }
 
@@ -106,13 +138,13 @@ canvas{
   display: block;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
 	.controls {
 		height: 28px;
 		padding: 5px 0;
 	}
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 1000px) {
 	.controls {
 		height: 50px;
 		padding: 10px 0;
@@ -175,33 +207,41 @@ canvas{
 	display: none;
 	left: 0;
 	right: 0;
-	top: 40%;
-	height: 21%;
-	max-width: 400px;
+	top: 0;
+	bottom: 0;
 	margin: 0 auto;
-	background-color: rgba(0,0,0,0.3);
-	border-radius: 5px;
+	background-color: rgba(0,0,0,0.6);
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
-@media screen and (max-width: 940px) {
-	#modalShare{
-		width: 80%;
-		height: 22%;
-	}
+.modalShareBackground {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
 }
-#modalShare div{
-	float: left;
+.modalShareContent {
+	max-width: 400px;
+	position: relative;
+	z-index: 20;
+}
+.modalShareContent div {
+	clear: both;
+	display: inline-block;
+	margin-bottom: 1rem;
 	width: 100%;
 }
-
-@media (max-width: 900px) and  (orientation: landscape) {
-	#modalShare{
-		position: absolute;
-    left: 35%;
-    width: 30%;
-    top: 10%;
-    height: 20%;
-    z-index: 1000;
-    display: none;
+@media screen and (max-width: 940px) {
+	.modalShareContent {
+		max-width: 60%;
 	}
 }
 
