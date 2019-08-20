@@ -1,3 +1,5 @@
+#August 2019 update: Note that this is an old version of the WebVR player. We are fine-tuning a new version and will update here when done.
+
 # LucidWeb WebVR-Core-Player
 
 WebVR 360 video player.
